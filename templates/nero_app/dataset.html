@@ -1,0 +1,52 @@
+{% extends "nero_app/base.html" %}
+
+{% block title %}НеРОН{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="left-column">
+        <h2>Формирование обучающего набора данных</h2>
+        
+      <label for="powerPlantSelect" class="form-label mt-4">Выбор станции</label>
+      <select class="form-select" id="powerPlantSelect">
+        <option>Богучанская ГЭС</option>
+        <option>Красноярская ГЭС</option>
+        <option>Харанорская ГРЭС</option>
+        <option>Саяно-Шушенская ГЭС</option>
+        <option>Березовская ГРЭС</option>
+      </select>
+
+        <button type="button" class="btn btn-outline-primary">Начать расчет</button>
+        <button type="button" class="btn btn-primary disabled">Обучить модель</button>
+    </div>
+
+    <div class="right-column">
+        <div>
+  <label class="col-form-label mt-4" for="time-series">Количество временных рядов в наборе</label>
+  <input type="number" class="form-control" placeholder="Введите число" id="time-series" min="1">
+</div>
+    </div>
+</div>
+
+<style>
+    .container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    .left-column, .right-column {
+        width: 45%;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    select, input, button {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+</style>
+
+{% endblock content %}

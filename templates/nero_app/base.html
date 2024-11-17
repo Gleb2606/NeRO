@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    <title>{% block title %}НеРОН{% endblock title %}</title>
+
+</head>
+
+<body>
+
+
+<nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark" style="width: 100%; margin: 0; padding: 0;">
+  <div class="container-fluid d-flex justify-content-start align-items-center" style="padding: 10px 0;">
+      <img src="{% static 'images/NERO_LOGO_neg.png' %}" alt="Нерон" class="logo" style="margin-right: 10px;"> 
+      <a class="navbar-brand" href="#">НеРОН</a>
+  </div>
+  <nav class="w-100 d-flex justify-content-center" style="padding: 10px 0;"> 
+      <a href="{% url 'dataset' %}" class="nav-link mx-3">Формирование датасета</a> 
+      <span>|</span>
+      <a href="{% url 'train' %}" class="nav-link mx-3">Обучение модели</a>
+      <span>|</span>
+      <a href="{% url 'calculation' %}" class="nav-link mx-3">Моделирование динамики</a>
+  </nav>
+</nav>
+    
+<div>
+    {% block content %}{% endblock content %}
+</div>
+
+</body>
+</html>

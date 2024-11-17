@@ -1,0 +1,49 @@
+{% extends "nero_app/base.html" %}
+
+{% block title %}НеРОН{% endblock title %}
+
+{% block content %}
+<div class="container">
+    <div class="left-column">
+        <h2>Моделирование переходных процессов</h2>
+
+        <label for="model" class="form-label mt-4">Выбрать модель</label>
+        <select class="form-select" id="model" name="model">
+            <option value="model1">LSTM Богучанской ГЭС</option>
+            <option value="model2">LSTM Красноярской ГЭС</option>
+            <option value="model3">LSTM Саяно-Шушенской ГЭС</option>
+        </select>
+
+        <label for="mode-file"  class="form-label mt-4">Выбор установившегося режима</label>
+        <input class="form-control" type="file" id="mode-file" name="model_file" accept=".rst" multiple>
+
+        <label for="fault-file"  class="form-label mt-4">Выбор сценария</label>
+        <input class="form-control" type="file" id="fault-file" name="fault_file" accept=".scn" multiple>
+
+        <button id="calculation" class="btn btn-outline-primary">Расчёт</button>
+
+    </div>
+</div>
+
+<style>
+    .container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    .left-column {
+        width: 45%;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input[type="file"], select, input[type="number"], button {
+        width: 100%;
+        padding: 8px;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+</style>
+
+{% endblock content %}

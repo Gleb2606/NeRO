@@ -1,0 +1,111 @@
+{% extends "nero_app/base.html" %}
+
+{% block title %}НеРОН{% endblock title %}
+
+{% block content %}
+
+{% load static %}
+<div class="container">
+    <div class="left-column">
+        <h2>Обучение модели</h2>
+        <div>
+            <label for="dataset-file" class="form-label mt-4">Обучающий набор данных</label>
+            <input class="form-control" type="file" id="dataset-file" accept=".json">
+        </div>
+        
+        <div>
+  <label class="col-form-label col-form-label-sm mt-4" for="file-name">Имя модели</label>
+  <input class="form-control form-control-sm" type="text" placeholder="Введите имя" id="file-name">
+</div>
+        <button id="train-model" class="btn btn-outline-primary">Обучить модель</button>
+        <button id="save-model" class="btn btn-primary disabled">Сохранить модель</button>
+    </div>
+
+    <div class="right-column">
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+        <label class="form-check-label" for="flexSwitchCheckDefault">Автоматический подбор гиперпараметров</label>
+      </div>
+        
+       <input type="checkbox" id="auto-tuning" onclick="toggleHyperparameters()">
+
+        <table class="hyperparameters">
+            <tr>
+                <td><label for="loss" class="form-label mt-4">Функция потерь (loss):</label></td>
+                <td>
+                    <select class="form-select" id="loss" name="loss" >
+                        <option value="mse">MSE</option>
+                        <option value="mae">MAE</option>
+                        <option value="rmse">RMSE</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="optimizer" class="form-label mt-4">Оптимизатор (optimizer):</label></td>
+                <td>
+                    <select class="form-select" id="optimizer" name="optimizer">
+                        <option value="adam">Adam</option>
+                        <option value="sgd">SGD</option>
+                        <option value="rmsprop">RMSprop</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td><label class="col-form-label mt-4" for="epoch">Кол-во эпох (epoch):</label></td>
+                <td><input class="form-control" type="number" id="epoch" name="epoch" min="1"></td>
+            </tr>
+            <tr>
+                <td><label class="col-form-label mt-4" for="input-width">Размер входного окна (input width):</label></td>
+                <td><input class="form-control" type="number" id="input-width" name="input_width" min="1"></td>
+            </tr>
+            <tr>
+                <td><label class="col-form-label mt-4" for="batch-size">Размер батча (batch size):</label></td>
+                <td><input class="form-control" type="number" id="batch-size" name="batch_size" min="1"></td>
+            </tr>
+             <tr>
+                <td><label class="col-form-label mt-4" for="layers">Кол-во слоев (layers):</label></td>
+                <td><input class="form-control" type="number" id="layers" name="layers" min="1"></td>
+            </tr>
+            <tr>
+                <td><label class="col-form-label mt-4" for="neurons">Кол-во нейронов (neurons):</label></td>
+                <td><input class="form-control" type="number" id="neurons" name="neurons" min="1"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<style>
+    .container {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+    }
+    .left-column, .right-column {
+        width: 45%;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input[type="file"], select, input[type="number"], button {
+        width: 100%;
+        padding: 8px;
+        margin: 10px 0;
+        font-size: 16px;
+    }
+    button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+    table.hyperparameters {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table.hyperparameters td {
+        padding: 10px 0;
+    }
+</style>
+
+<script src="{% static 'scripts/nero_app/train.js' %}"></script>
+
+{% endblock content %}
