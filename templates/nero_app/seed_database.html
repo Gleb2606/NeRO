@@ -1,0 +1,38 @@
+{% extends "nero_app/db_base.html" %}
+
+{% block content %}
+{% load static %}
+    
+    <div>
+        <label class="col-form-label mt-4" for="time-series">Поиск станции</label>
+        <input type="text" class="form-control" placeholder="Введите наименование" id="time-series" min="1">
+        <div id="PlantsTableContainer" class="mt-4"></div>
+    </div>
+    
+    <button type="button" class="btn btn-outline-primary" id="AddPlantButton" data-bs-toggle="modal" data-bs-target="#AddPlantModal">
+    Добавить станцию
+    </button>
+    
+    <div class="modal fade" id="AddPlantModal" tabindex="-1" aria-labelledby="AddPlantModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="AddPlantModalLabel">Добавить новую станцию</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <label for="PlantNameInput" class="form-label">Наименование станции</label>
+                <input type="text" class="form-control" id="PlantNameInput" placeholder="Введите наименование">
+                <div id="ModalErrorMessage" class="text-danger mt-2" style="display: none;">Ошибка: Поле не должно быть пустым.</div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                <button type="button" class="btn btn-primary" id="SubmitPlantButton">Добавить</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+<script src="{% static 'scripts/nero_app/seed_plant_names.js' %}"></script>
+<script src="{% static 'scripts/nero_app/add_plant.js' %}"></script>
+{% endblock content %}

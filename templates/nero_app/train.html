@@ -7,28 +7,39 @@
 {% load static %}
 <div class="container">
     <div class="left-column">
-        <h2>Обучение модели</h2>
+        <p></p>
+        <h2>Обучение модели машинного обучения</h2>
         <div>
             <label for="dataset-file" class="form-label mt-4">Обучающий набор данных</label>
             <input class="form-control" type="file" id="dataset-file" accept=".json">
         </div>
         
         <div>
-  <label class="col-form-label col-form-label-sm mt-4" for="file-name">Имя модели</label>
-  <input class="form-control form-control-sm" type="text" placeholder="Введите имя" id="file-name">
-</div>
-        <button id="train-model" class="btn btn-outline-primary">Обучить модель</button>
-        <button id="save-model" class="btn btn-primary disabled">Сохранить модель</button>
+            <label class="col-form-label col-form-label-sm mt-4" for="file-name">Имя модели</label>
+            <input class="form-control form-control-sm" type="text" placeholder="Введите имя" id="file-name">
+        </div>
+        
+        <div>
+            <button id="train-model" class="btn btn-outline-primary">Обучить модель</button>
+            
+                <div id="loadingSpinner" class="spinner-border text-primary" role="status" style="display: none;">
+                <span class="visually-hidden">Идёт обучение ИНС...</span>
+                </div>
+            
+            <button id="save-model" class="btn btn-primary disabled">Сохранить модель</button>
+        </div>
     </div>
 
     <div class="right-column">
+      <p></p>
       <div class="form-check form-switch">
-        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" >
         <label class="form-check-label" for="flexSwitchCheckDefault">Автоматический подбор гиперпараметров</label>
       </div>
+        <label for="auto-tuning"></label>
         
-       <input type="checkbox" id="auto-tuning" onclick="toggleHyperparameters()">
-
+        
+        
         <table class="hyperparameters">
             <tr>
                 <td><label for="loss" class="form-label mt-4">Функция потерь (loss):</label></td>
@@ -52,23 +63,23 @@
             </tr>
             <tr>
                 <td><label class="col-form-label mt-4" for="epoch">Кол-во эпох (epoch):</label></td>
-                <td><input class="form-control" type="number" id="epoch" name="epoch" min="1"></td>
+                <td><input class="form-control" type="number" id="epoch" name="epoch" min="1" value="1"></td>
             </tr>
             <tr>
                 <td><label class="col-form-label mt-4" for="input-width">Размер входного окна (input width):</label></td>
-                <td><input class="form-control" type="number" id="input-width" name="input_width" min="1"></td>
+                <td><input class="form-control" type="number" id="input-width" name="input_width" min="1" value="40"></td>
             </tr>
             <tr>
                 <td><label class="col-form-label mt-4" for="batch-size">Размер батча (batch size):</label></td>
-                <td><input class="form-control" type="number" id="batch-size" name="batch_size" min="1"></td>
+                <td><input class="form-control" type="number" id="batch-size" name="batch_size" min="1" value="30"></td>
             </tr>
              <tr>
                 <td><label class="col-form-label mt-4" for="layers">Кол-во слоев (layers):</label></td>
-                <td><input class="form-control" type="number" id="layers" name="layers" min="1"></td>
+                <td><input class="form-control" type="number" id="layers" name="layers" min="1" value="3"></td>
             </tr>
             <tr>
                 <td><label class="col-form-label mt-4" for="neurons">Кол-во нейронов (neurons):</label></td>
-                <td><input class="form-control" type="number" id="neurons" name="neurons" min="1"></td>
+                <td><input class="form-control" type="number" id="neurons" name="neurons" min="1" value="10"></td>
             </tr>
         </table>
     </div>

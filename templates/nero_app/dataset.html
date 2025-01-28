@@ -3,28 +3,37 @@
 {% block title %}НеРОН{% endblock title %}
 
 {% block content %}
+    
+{%  load static %}
 <div class="container">
     <div class="left-column">
+        <h1></h1>
         <h2>Формирование обучающего набора данных</h2>
         
-      <label for="powerPlantSelect" class="form-label mt-4">Выбор станции</label>
-      <select class="form-select" id="powerPlantSelect">
-        <option>Богучанская ГЭС</option>
-        <option>Красноярская ГЭС</option>
-        <option>Харанорская ГРЭС</option>
-        <option>Саяно-Шушенская ГЭС</option>
-        <option>Березовская ГРЭС</option>
-      </select>
+        <label for="powerPlantSelect" class="form-label mt-4">Выбор станции</label>
+        <select class="form-select" id="powerPlantSelect">
+        <!-- Элементы списка -->
+        </select>
+        
+        <div id="calculationArea">
+            <button type="button" class="btn btn-outline-primary" id="startCalculationButton">Начать расчет</button>
+            <div id="calculationResult" class="mt-4"></div>
+            <button type="button" class="btn btn-outline-primary" id="startPreprocessButton">Обучить модель</button>
+            <div id="loadingSpinner" class="spinner-border text-primary" role="status" style="display: none;">
+                <span class="visually-hidden">Идёт расчёт...</span>
+            </div>
+        </div>
 
-        <button type="button" class="btn btn-outline-primary">Начать расчет</button>
-        <button type="button" class="btn btn-primary disabled">Обучить модель</button>
+        <!-- New button to navigate to seed page -->
+        <button type="button" class="btn btn-outline-primary mt-4" onclick="location.href='{% url 'seed' %}'">Добавить станцию</button>
     </div>
 
     <div class="right-column">
         <div>
-  <label class="col-form-label mt-4" for="time-series">Количество временных рядов в наборе</label>
-  <input type="number" class="form-control" placeholder="Введите число" id="time-series" min="1">
-</div>
+            <label class="col-form-label mt-4" for="time-series">Количество временных рядов в наборе</label>
+            <input type="number" class="form-control" placeholder="Введите число" id="time-series" min="1">
+        </div>
+        <div id="factorsTableContainer" class="mt-4"></div>
     </div>
 </div>
 
@@ -32,7 +41,7 @@
     .container {
         display: flex;
         justify-content: space-between;
-        margin-top: 20px;
+        margin-top: 20px; /* Отступ сверху для контента */
     }
     .left-column, .right-column {
         width: 45%;
@@ -48,5 +57,10 @@
         font-size: 16px;
     }
 </style>
+
+<script src="{% static 'scripts/nero_app/populate_select.js' %}"></script>
+<script src="{% static 'scripts/nero_app/display_factors.js' %}"></script>
+<script src="{% static 'scripts/nero_app/spinner.js' %}"></script>
+<script src="{% static 'scripts/nero_app/preprocess.js' %}"></script>
 
 {% endblock content %}

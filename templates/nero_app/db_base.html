@@ -46,20 +46,15 @@
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mx-auto">
                    <li class="nav-item">
-    <a class="nav-link {% if request.resolver_match.url_name == 'dataset' %}active{% endif %}" href="{% url 'dataset' %}">
-        Формирование датасета
-    </a>
-</li>
-<li class="nav-item">
-    <a class="nav-link {% if request.resolver_match.url_name == 'train' %}active{% endif %}" href="{% url 'train' %}">
-        Обучение модели
-    </a>
-</li>
-<li class="nav-item">
-    <a class="nav-link {% if request.resolver_match.url_name == 'calculation' %}active{% endif %}" href="{% url 'calculation' %}">
-        Моделирование динамики
-    </a>
-</li>
+                        <a class="nav-link {% if request.resolver_match.url_name == 'dataset' or request.resolver_match.url_name == 'seed' %}active{% endif %}" href="{% url 'dataset' %}">
+                        Добавление станций
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.resolver_match.url_name == 'train' %}active{% endif %}" href="{% url 'train' %}">
+                        Добавление элементов
+                        </a>
+                    </li>
                 </ul>
                 <a class="btn btn-secondary my-2 my-sm-0 custom-btn" href="{% url 'login' %}">Выйти</a>
             </div>
